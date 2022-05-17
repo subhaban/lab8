@@ -60,8 +60,8 @@ typeBtn.addEventListener('click', (e) => {
   
     // Define the database schema, which includes tables and their key indices
     db.version(1).stores({
-      word: `++, &randomwords`,
-      meanings: `++, &definition`
+      word: `word, &value`,
+      meanings: `word, &definition`
     });
 
     // get random words
@@ -147,6 +147,7 @@ openRequest.addEventListener('upgradeneeded', e => {
 //------Functions --------//
 //---Fuction for random words.--//
 //Using the fetch method from random word API--//
+
 const randomWord = () => {
     fetch("https://random-word-api.herokuapp.com/word?number=1")
     
@@ -235,3 +236,33 @@ function nameDisplayCheck() {
       rememberDiv.style.display = 'block';
     }
   }
+
+
+const toggleBtn = document.getElementById("toggle-btn");
+const theme = document.getElementById("theme");
+let darkMode = localStorage.getItem("dark-mode");
+
+const enableDarkMode = () => {
+  theme.classList.add("dark-mode-theme");
+  toggleBtn.classList.remove("dark-mode-toggle");
+  localStorage.setItem("dark-mode", "enabled");
+};
+
+const disableDarkMode = () => {
+  theme.classList.remove("dark-mode-theme");
+  toggleBtn.classList.add("dark-mode-toggle");
+  localStorage.setItem("dark-mode", "disabled");
+};
+
+if (darkMode === "enabled") {
+  enableDarkMode(); // set state of darkMode on page load
+}
+
+toggleBtn.addEventListener("click", (e) => {
+  darkMode = localStorage.getItem("dark-mode"); // update darkMode when clicked
+  if (darkMode === "disabled") {
+    enableDarkMode();
+  } else {
+    disableDarkMode();
+  }
+});

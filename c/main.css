@@ -8,14 +8,17 @@ body{
  background-color:rgb(111, 190, 190);
 
 }
-
+#theme {
+    width: 100vw;
+    height: 100vh;
+  }
 section{
  display:flex;
  flex-direction: row;
  justify-content: space-evenly;
  justify-items: center;
 
- padding:2rem;
+ padding:.5rem;
 }
 
 /* --Div used to Display words and definitions----*/
@@ -27,7 +30,7 @@ h1{
     margin:auto;
    font-size:3rem;
    text-align: center; 
-   color:rgb(85, 16, 164);
+   color:rgb(247, 144, 35);
 }
 h2{
     text-align: center;
@@ -40,7 +43,7 @@ h2{
 h3{
     margin:auto;
     text-align: center;
-    color: #4e070a;
+    color: #8b9815;
     font-size:2.5rem;
 }
 
@@ -87,7 +90,24 @@ p
     font-size:1.5rem;
     background-color: #4e070a;
     color:#f5f5dc;
-    margin:1rem;
-    padding:1rem;
+    margin:3px;
+    padding:.5rem;
 }
 
+/* toggle mode*/
+#toggle-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  
+  .dark-mode-toggle {
+    background: #000;
+    color: #fff;
+  }
+  
+  
+  
+  .dark-mode-theme {
+    background: #000;
+    color: #fff;
+  }

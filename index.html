@@ -2,65 +2,62 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="c/main.css">
-    <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
-    <script type="module" src="j/main.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="c/main.css">
+  <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
+  <script type="module" src="j/main.js"></script>
 
-    <title>Lab 7</title>
+  <title>Lab 8</title>
 </head>
 
 <body>
-  <form >
-        <div class="remember">
-            <label for="entername">Please enter your name:</label>
-            <input id="entername" type="text" required>
-            <input id="submitname" type="submit" value="Hello">
-          </div>
-          <div class="forget">
-            <label for="forgetname">Want me to forget you?</label>
-            <input id="forgetname" type="reset" value="Forget">
-          </div>
-          
-        <div>
-          <label for="bgcolor">Choose background Mode:</label>
-          
-          <select id="bgcolor" class="color">
+  <div id="theme">
+    <form>
+      <div class="remember">
+        <label for="entername">Please enter your name:</label>
+        <input id="entername" type="text" required>
+        <input id="submitname" type="submit" value="Hello">
+      </div>
+      <div class="forget">
+        <label for="forgetname">Want me to forget you?</label>
+        <input id="forgetname" type="reset" value="Forget">
+      </div>
+
+
+      <button id="toggle-btn" class="dark-mode-toggle">Toggle dark mode</button>
+
+      <!--- <select id="bgcolor" class="color">
         	<option value="FFffff" id="lightmode" selected>Light Mode</option>
         	<option value="000000" id="darkmode">Dark Mode</option>
         	
-        </select>
-        </div>
-      </form>
-    <h1>Words and their Meanings </h1>
+        </select>-->
+  
+  </form>
+  <h1>Words and their Meanings </h1>
 
-    <h2>Type a word or click on random word button to generate a random word and get its  definitions</h2>
-    <section>
-        <form>
-            <input id="wordtype" type="text" name="usertext"></br></br>
-            <button type="submit" id="typebtn" value="getword">Type the word</button>
-        </form>
+  <h2>Type a word or click on random word button to generate a random word and get its definitions</h2>
+  <section>
+    <form>
+      <input id="wordtype" type="text" name="usertext"></br></br>
+      <button type="submit" id="typebtn" value="getword">Type the word</button>
+    </form>
 
-        <div>
-            <button id="btn"> Random Word </button>
-            
-        </div>
-       
-    </section>
-    <div id="container">
-        <dl>
-            <dt id="title"></dt>
-              <dd id="def"></dd>
-        </dl>
+    <div>
+      <button id="btn"> Random Word </button>
+
     </div>
 
+  </section>
+  <div id="container">
+    <dl>
+      <dt id="title"></dt>
+      <dd id="def"></dd>
+    </dl>
+  </div>
+  </div>
 
 </body>
 
 </html>
-
-
-
-

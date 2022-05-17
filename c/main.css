@@ -1,0 +1,93 @@
+*{
+    box-sizing: border-box;
+    margin:5px;
+    padding:0;
+}
+body{
+   
+ background-color:rgb(111, 190, 190);
+
+}
+
+section{
+ display:flex;
+ flex-direction: row;
+ justify-content: space-evenly;
+ justify-items: center;
+
+ padding:2rem;
+}
+
+/* --Div used to Display words and definitions----*/
+#container{
+    margin:auto;
+}
+
+h1{
+    margin:auto;
+   font-size:3rem;
+   text-align: center; 
+   color:rgb(85, 16, 164);
+}
+h2{
+    text-align: center;
+    color:rgb(207, 242, 242);
+    font-size: 1.5rem;;
+    margin:50px ;
+}
+
+/* --Dynamically created heading to display the  words----*/
+h3{
+    margin:auto;
+    text-align: center;
+    color: #4e070a;
+    font-size:2.5rem;
+}
+
+/* --Random Word generator button----*/
+#btn{
+    cursor: pointer;
+    width:220px;
+    height:80px;
+    font-size:1.5rem;
+    background-color: brown;
+    color:#f5f5dc;
+    margin:30% 20%;
+    border:4px solid rgb(75, 90, 45);
+
+   
+}
+
+/* -- Typed word Submit button----*/
+#typebtn {
+    cursor: pointer;
+    width:220px;
+    height:80px;
+    font-size:1.5rem;
+    background-color: brown;
+    color:#f5f5dc;
+    border:4px solid rgb(75, 90, 45);
+   
+}
+
+/* -- Id for the Input----*/
+#wordtype{
+    width:200px;
+    height:30px;
+    background-color: #c0ecec;
+    color:rgb(8, 82, 114);
+    font-size: 1.5rem;
+    padding:10px;
+}
+
+/* -- Dynamically created paragraph by JS to display definitions ----*/
+p
+{
+   text-align: center;
+    font-size:1.5rem;
+    background-color: #4e070a;
+    color:#f5f5dc;
+    margin:1rem;
+    padding:1rem;
+}
+

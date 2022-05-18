@@ -14,7 +14,7 @@
 
 <body>
   <div id="theme">
-    <form>
+    <form class="rememberform">
       <div class="remember">
         <label for="entername">Please enter your name:</label>
         <input id="entername" type="text" required>
@@ -28,34 +28,28 @@
 
       <button id="toggle-btn" class="dark-mode-toggle">Toggle dark mode</button>
 
-      <!--- <select id="bgcolor" class="color">
-        	<option value="FFffff" id="lightmode" selected>Light Mode</option>
-        	<option value="000000" id="darkmode">Dark Mode</option>
-        	
-        </select>-->
-  
-  </form>
-  <h1>Words and their Meanings </h1>
-
-  <h2>Type a word or click on random word button to generate a random word and get its definitions</h2>
-  <section>
-    <form>
-      <input id="wordtype" type="text" name="usertext"></br></br>
-      <button type="submit" id="typebtn" value="getword">Type the word</button>
     </form>
+    <h1>Words and their Meanings </h1>
 
-    <div>
-      <button id="btn"> Random Word </button>
+    <h2>Type a word or click on random word button to generate a random word and get its definitions</h2>
+    <section>
+      <form>
+        <input id="wordtype" type="text" name="usertext"><br><br>
+        <button type="submit" id="typebtn" value="getword">Type the word</button>
+      </form>
 
+      <div>
+        <button id="btn"> Random Word </button>
+
+      </div>
+
+    </section>
+    <div id="container">
+      <dl>
+        <dt id="title"></dt>
+        <dd id="def"></dd>
+      </dl>
     </div>
-
-  </section>
-  <div id="container">
-    <dl>
-      <dt id="title"></dt>
-      <dd id="def"></dd>
-    </dl>
-  </div>
   </div>
 
 </body>

@@ -15,22 +15,27 @@ body{
 section{
  display:flex;
  flex-direction: row;
- justify-content: space-evenly;
- justify-items: center;
+ justify-content:space-evenly;
+ justify-items:left;
 
  padding:.5rem;
 }
-
+.remember{
+    display:flex;
+    flex-direction: row;
+    justify-content: right;
+}
 /* --Div used to Display words and definitions----*/
 #container{
     margin:auto;
+    height:fit-content;
 }
 
 h1{
     margin:auto;
    font-size:3rem;
    text-align: center; 
-   color:rgb(247, 144, 35);
+   color:rgb(5, 60, 87);
 }
 h2{
     text-align: center;
@@ -74,7 +79,7 @@ h3{
 }
 
 /* -- Id for the Input----*/
-#wordtype{
+#wordtype ,#entername {
     width:200px;
     height:30px;
     background-color: #c0ecec;
@@ -104,10 +109,17 @@ p
     background: #000;
     color: #fff;
   }
-  
-  
-  
+    #toggle-btn{
+        padding:2px;
+        font-size:1rem;
+        margin-left:30px;
+    }
+
   .dark-mode-theme {
     background: #000;
     color: #fff;
+  }
+
+  .dark-mode-theme > h1 {
+    color:rgb(247, 144, 35);
   }

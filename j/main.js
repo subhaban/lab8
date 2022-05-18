@@ -18,6 +18,10 @@ const btn = document.querySelector("#btn");
 const typeBtn = document.querySelector("#typebtn");
 const para = document.createElement('p');
 
+// global variables for toggle mode//
+const toggleBtn = document.getElementById("toggle-btn");
+const theme = document.getElementById("theme");
+
 form.addEventListener('submit', e => e.preventDefault());
 submitBtn.addEventListener('click', () => {
     // store the entered name in web storage
@@ -48,9 +52,38 @@ typeBtn.addEventListener('click', (e) => {
     typeWord();
 });
 
+///--- toggle to dark mode---////
+
+let darkMode = localStorage.getItem("dark-mode");
+
+const enableDarkMode = () => {
+  theme.classList.add("dark-mode-theme");
+  toggleBtn.classList.remove("dark-mode-toggle");
+  localStorage.setItem("dark-mode", "enabled");
+};
+
+const disableDarkMode = () => {
+  theme.classList.remove("dark-mode-theme");
+  toggleBtn.classList.add("dark-mode-toggle");
+  localStorage.setItem("dark-mode", "disabled");
+};
+
+if (darkMode === "enabled") {
+  enableDarkMode(); // set state of darkMode on page load
+}
+
+toggleBtn.addEventListener("click", (e) => {
+  darkMode = localStorage.getItem("dark-mode"); // update darkMode when clicked
+  if (darkMode === "disabled") {
+    enableDarkMode();
+  } else {
+    disableDarkMode();
+  }
+});
+
 /// create database////
 
-(async function wordgame() {
+(async function () {
  
     let title = document.querySelector("#title");
     let Definition = document.querySelector("#def");
@@ -59,42 +92,46 @@ typeBtn.addEventListener('click', (e) => {
     var db = new Dexie("Randomwordlist");
   
     // Define the database schema, which includes tables and their key indices
-    db.version(1).stores({
-      word: `word, &value`,
-      meanings: `word, &definition`
+    db.version(20).stores({
+      word: `++,&word`,
+      meanings: `++,&word,definition`
     });
 
     // get random words
-    const randomword_data = await fetch('https://random-word-api.herokuapp.com/word?number=1');
+    const randomword_data = await fetch('https://random-word-api.herokuapp.com/word?number=5');
     const wordlist = await randomword_data.json();
     const word_array = await wordlist;
     console.log(wordlist);
     console.log(word_array);
   
     //  get the word meanings
-   //let i= 0; 
-//for (i = 0; i <= wordlist.lenght; i++){
+    
+   console.log(wordlist.length);
 
+for (let i = 0; i < wordlist.length; i++){
 
-      const def_data = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${wordlist}?key=${info.key}`);
+      const def_data = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${wordlist[i]}?key=${info.key}`);
 
-      const worddef = await def_data.json();
+     const worddef = await def_data.json();
      const worddef_array = await worddef;
-      console.log(worddef);
-      
+     
+     console.log(worddef_array);
+     console.log(worddef);
       // populate the tables
      db.word.bulkPut(wordlist);
-     db.meanings.bulkPut(worddef_array);
-     
-      console.log(worddef);
-      console.log(worddef_array);
-      
-    //};
+     db.meanings.bulkPut(worddef);
+    
+    }
     
     // make a queries of the database
-    //const newwords =  await db.wordlist.toArray();
-    //const wordmeanings = await db.meanings.toArray();
-  
+    const fetchwords =  await db.word.toArray();
+    const wordmeanings = await db.meanings.toArray();
+   console.log(fetchwords);
+   console.log(wordmeanings);
+   console.log(wordmeanings[0].shortdef);
+
+   
+
     /*wordlist.forEach((element) => {
           const li = document.createElement("LI");
           li.textContent = word.name;
@@ -108,53 +145,21 @@ typeBtn.addEventListener('click', (e) => {
         });*/
   
   
-  } ()); // end IIFE 
-  
-
-////second version of db
-/*let db;
-const openRequest = window.indexedDB.open('randomwordsdb',1);
-// error handler signifies that the database didn't open successfully
-openRequest.addEventListener('error', () => console.error('Database failed to open'));
-
-// success handler signifies that the database opened successfully
-openRequest.addEventListener('success', () => {
-  console.log('Database opened successfully');
-
-  // Store the opened database object in the db variable. This is used a lot below
-  db = openRequest.result;
-
-  // Run the displayData() function to display the words already in the IDB
-  displayData();
-});
-
-openRequest.addEventListener('upgradeneeded', e => {
-
-  // Grab a reference to the opened database
-  db = e.target.result;
-
-  // Create an objectStore to store words in (basically like a single table)
-  // including a auto-incrementing key
-  const objectStore = db.createObjectStore('randomwordsdb', { keyPath:'word', autoIncrement:true });
-
-  // Define what data items the objectStore will contain
-  objectStore.createIndex( 'words', { unique: false });
-  objectStore.createIndex( 'definition', { unique: false });
-
-  console.log('Database setup complete');
-});*/
-
+   } ()); // end IIFE 
+ 
 //------Functions --------//
 //---Fuction for random words.--//
 //Using the fetch method from random word API--//
 
 const randomWord = () => {
-    fetch("https://random-word-api.herokuapp.com/word?number=1")
+
+  fetch("https://random-word-api.herokuapp.com/word?number=1")
     
         .then(response => {
-            return response.json();
+           return response.json();
         })
         .then(response => {
+
             
             let wordlist = response;
             let h3 = document.createElement('H3');
@@ -169,10 +174,10 @@ const randomWord = () => {
 
         })
         .catch(err => {
-            console.log("Error", err);
+           console.log("Error", err);
 
-        })
-    
+       })
+        
 }
 
 //--- Function for getting the word definition---//
@@ -238,31 +243,3 @@ function nameDisplayCheck() {
   }
 
 
-const toggleBtn = document.getElementById("toggle-btn");
-const theme = document.getElementById("theme");
-let darkMode = localStorage.getItem("dark-mode");
-
-const enableDarkMode = () => {
-  theme.classList.add("dark-mode-theme");
-  toggleBtn.classList.remove("dark-mode-toggle");
-  localStorage.setItem("dark-mode", "enabled");
-};
-
-const disableDarkMode = () => {
-  theme.classList.remove("dark-mode-theme");
-  toggleBtn.classList.add("dark-mode-toggle");
-  localStorage.setItem("dark-mode", "disabled");
-};
-
-if (darkMode === "enabled") {
-  enableDarkMode(); // set state of darkMode on page load
-}
-
-toggleBtn.addEventListener("click", (e) => {
-  darkMode = localStorage.getItem("dark-mode"); // update darkMode when clicked
-  if (darkMode === "disabled") {
-    enableDarkMode();
-  } else {
-    disableDarkMode();
-  }
-});
